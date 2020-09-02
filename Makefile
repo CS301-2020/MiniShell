@@ -1,3 +1,3 @@
 hellomake: Shell.c
 	@echo "building shell..."
-	gcc -o Shell Shell.c -w
+	gcc -o shell shell.c -w

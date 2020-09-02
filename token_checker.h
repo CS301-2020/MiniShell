@@ -6,8 +6,9 @@
 #include "my_functions/my_rm.h"
 #include "my_functions/my_mv.h"
 #include "my_functions/my_chmod.h"
-
-
+#include "my_functions/my_cp.h"
+#include "my_functions/my_grep.h"
+#include "my_functions/my_fork.h"
 
 void check_token(int argc, char * argw[],char * input){
     //Change Directory
@@ -131,7 +132,8 @@ void check_token(int argc, char * argw[],char * input){
         else
             printf("Supported Usage- \nchmod [mode] [path]");
     }
-/*
+
+
     else if(!strcmp("cp",argw[0]))
     {
         if(argc>=3){
@@ -157,6 +159,8 @@ void check_token(int argc, char * argw[],char * input){
         }
         
     }
+
+
     else if(!strcmp("grep",argw[0]))
     {
        if(argc >= 3){
@@ -166,11 +170,11 @@ void check_token(int argc, char * argw[],char * input){
            }
        }
     }
-    
+   
     else
     {
         fork_(argc,argw,input);
         printf("\n");
     }     
-*/  
+ 
 }
