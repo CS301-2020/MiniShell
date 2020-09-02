@@ -1,5 +1,8 @@
 #include "my_cd.h"
 #include "my_pwd.h"
+#include "my_cat.h"
+#include "my_ls.h"
+#include "my_mkdir.h"
 
 void check_token(int argc, char * argw[],char * input){
     //Change Directory
@@ -24,7 +27,7 @@ void check_token(int argc, char * argw[],char * input){
         else
             printf("Enter correct command\n");        
     }
-/*
+
     //Cat Function (Multiple arg left)
     else if(!strcmp("cat",argw[0]))
     {   
@@ -35,7 +38,7 @@ void check_token(int argc, char * argw[],char * input){
         }      
     }
 
-    //ls is incomplete
+    //ls Function
     else if(!strcmp("ls",argw[0]))
     {
         if(argc == 1){
@@ -62,7 +65,7 @@ void check_token(int argc, char * argw[],char * input){
             mk_dir(argw[i]);
         }          
     }
-
+/*
     //remove directory
     else if(!strcmp("rm",argw[0]))
     {   

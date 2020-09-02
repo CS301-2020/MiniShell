@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "ls.h"
 #include "tokenizer.h"
 #define PATH_MAX 4096
 
