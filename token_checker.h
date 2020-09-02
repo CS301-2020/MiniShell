@@ -1,15 +1,19 @@
-#include "my_cd.h"
-#include "my_pwd.h"
-#include "my_cat.h"
-#include "my_ls.h"
-#include "my_mkdir.h"
+#include "my_functions/my_cd.h"
+#include "my_functions/my_pwd.h"
+#include "my_functions/my_cat.h"
+#include "my_functions/my_ls.h"
+#include "my_functions/my_mkdir.h"
+#include "my_functions/my_rm.h"
+#include "my_functions/my_mv.h"
+#include "my_functions/my_chmod.h"
+
+
 
 void check_token(int argc, char * argw[],char * input){
     //Change Directory
     
     if(!strcmp("cd",argw[0]))
     {   
-        printf("%d",argc);
         if(argc == 2){
             char * path = argw[1];
             cd_(path);
@@ -65,7 +69,7 @@ void check_token(int argc, char * argw[],char * input){
             mk_dir(argw[i]);
         }          
     }
-/*
+
     //remove directory
     else if(!strcmp("rm",argw[0]))
     {   
@@ -79,12 +83,25 @@ void check_token(int argc, char * argw[],char * input){
             
                 
     }
-    
-    //move directory (multiple input handling left and directory handling)
+  
+    //move directory
     else if(!strcmp("mv",argw[0]))
     {   
         // printf("ITS left");
-        if(argc>=3){
+        if(argc==3){
+            int src =strstr(argw[argc-1],".")!=NULL;
+            int dest =strstr(argw[argc-2],".")!=NULL;
+            if(!src && dest){
+                char folder[PATH_MAX];
+                memcpy(folder,argw[argc-1],PATH_MAX);
+                strcat(folder,"/");
+                strcat(folder,argw[1]);
+                mv_(argw[1],folder);
+            }
+            else    
+                mv_(argw[argc-2],argw[argc-1]);
+        }
+        else if(argc>3){
             int file =strstr(argw[argc-1],".")!=NULL;      
             for(int i=1;i<argc-1;i++){
                 if(!file){
@@ -92,7 +109,6 @@ void check_token(int argc, char * argw[],char * input){
                     memcpy(folder,argw[argc-1],PATH_MAX);
                     strcat(folder,"/");
                     strcat(folder,argw[i]);
-                    printf("%s",folder);
                     mv_(argw[i],folder);
                 }
                 else
@@ -106,7 +122,7 @@ void check_token(int argc, char * argw[],char * input){
             printf("Enter Command Correctly");     
     }
 
-
+    //Chmod Function
     else if(!strcmp("chmod",argw[0]))
     {
         if(argc == 3){
@@ -114,9 +130,8 @@ void check_token(int argc, char * argw[],char * input){
         }     
         else
             printf("Supported Usage- \nchmod [mode] [path]");
-        
-        
     }
+/*
     else if(!strcmp("cp",argw[0]))
     {
         if(argc>=3){
