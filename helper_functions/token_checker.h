@@ -22,7 +22,7 @@
 #include "../my_functions/my_chmod.h"
 #include "../my_functions/my_cp.h"
 #include "../my_functions/my_grep.h"
-#include "../my_functions/fork.h"
+#include "../my_functions/my_fork.h"
 #define pass (void)0
 void check_token(int argc, char * argw[],char * input){
     

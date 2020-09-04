@@ -11,7 +11,7 @@
 #define _GNU_SOURCE
 #include <string.h>
 #define NULL ((void *)0)
-#include "../my_functions/my_fork.h"
+#include "dist_fork.h"
 
 void tokenizer(char input[]){
     int argc=0;
