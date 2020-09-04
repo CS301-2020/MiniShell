@@ -14,16 +14,16 @@
  *  The distribution function based on the & flag decides if the output needs to be printed or not,
  *  and then calls the token checkker function.
  * 
+ * (Token checkker commenting)
  */
 
 
-#include <fcntl.h>
+
 #include <unistd.h>
-#include <sys/stat.h>
-#include "../helper_functions/token_checker.h"
+// #include "../helper_functions/token_checker.h"
 #define pass (void)0
 
-void fork_(int argc, char * argw[],char * input){
+void bgfork_(int argc, char * argw[],char * input){
     //some code
     int id=fork();
     if(id==0)
@@ -39,15 +39,11 @@ void fork_(int argc, char * argw[],char * input){
             dup2(fd, 2);    /* ...and same with stderr */
             close(fd);      /* close fd */
         }
-        check_token(argc,argw,input);
-        // exit(1);
     }
     else
     {
     //Parent does work here
     int status;
-    if(!strcmp(argw[argc-1],"&")==0){waitpid(id,&status,0);}
-    else printf("process id - [%d]",id);
-    printf("%d",&status);
+    printf("process id - [%d]",id);
     }
 }

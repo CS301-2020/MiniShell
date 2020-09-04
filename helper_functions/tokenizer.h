@@ -8,11 +8,10 @@
  *  Parses the tokens to the function for further interpretation
  */
 
-
 #define _GNU_SOURCE
 #include <string.h>
 #define NULL ((void *)0)
-#include "my_functions/my_fork.h"
+#include "../my_functions/my_fork.h"
 
 void tokenizer(char input[]){
     int argc=0;
@@ -22,12 +21,8 @@ void tokenizer(char input[]){
     while(argw[argc]!=NULL){
         argw[++argc] = strtok(NULL," ");
     }
-    printf("\n");
-    for(int i =0; i<argc;i++)
-        printf("%s\n",argw[i]);
     
-    // fork_(argc,argw,input);
-    //     printf("\n");
-    // check_token(argc,argw,input);
+    fork_(argc,argw,input);
+    printf("\n");
     
 }

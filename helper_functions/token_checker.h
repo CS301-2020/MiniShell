@@ -1,17 +1,32 @@
-#include "my_functions/my_cd.h"
-#include "my_functions/my_pwd.h"
-#include "my_functions/my_cat.h"
-#include "my_functions/my_ls.h"
-#include "my_functions/my_mkdir.h"
-#include "my_functions/my_rm.h"
-#include "my_functions/my_mv.h"
-#include "my_functions/my_chmod.h"
-#include "my_functions/my_cp.h"
-#include "my_functions/my_grep.h"
+/*
+ * Function:  check_token 
+ * --------------------
+ * This function is the brain of the shell, This functions interprets the tokenized input and then calls 
+ * the corresponding function as per the token that user passes in
+ *
+ *  argc: Number of inputs
+ *  argw: Tokenised input arguments
+ *  input: Input string
+ *
+ *  This function checks the first token and checks if there is a predifined user function available for that
+ *  it calls the function if present else it passes the function to excvp
+ */
 
+#include "../my_functions/my_cd.h"
+#include "../my_functions/my_pwd.h"
+#include "../my_functions/my_cat.h"
+#include "../my_functions/my_ls.h"
+#include "../my_functions/my_mkdir.h"
+#include "../my_functions/my_rm.h"
+#include "../my_functions/my_mv.h"
+#include "../my_functions/my_chmod.h"
+#include "../my_functions/my_cp.h"
+#include "../my_functions/my_grep.h"
+#include "../my_functions/fork.h"
+#define pass (void)0
 void check_token(int argc, char * argw[],char * input){
-    //Change Directory
     
+    //Change Directory
     if(!strcmp("cd",argw[0]))
     {   
         if(argc == 2){
@@ -32,7 +47,7 @@ void check_token(int argc, char * argw[],char * input){
             printf("Enter correct command\n");        
     }
 
-    //Cat Function (Multiple arg left)
+    //Cat Function 
     else if(!strcmp("cat",argw[0]))
     {   
         for(int i = 1; i<argc; i++){
@@ -79,15 +94,12 @@ void check_token(int argc, char * argw[],char * input){
                
         else
         for(int i = 1; i<argc; i++)
-                remove_(argw[i]);
-            
-                
+                remove_(argw[i]);        
     }
   
     //move directory
     else if(!strcmp("mv",argw[0]))
     {   
-        // printf("ITS left");
         if(argc==3){
             int src =strstr(argw[argc-1],".")!=NULL;
             int dest =strstr(argw[argc-2],".")!=NULL;
@@ -114,8 +126,7 @@ void check_token(int argc, char * argw[],char * input){
                 else
                 {
                     mv_(argw[i],argw[argc-1]);
-                }
-                
+                }  
             }
         }
         else
@@ -132,7 +143,7 @@ void check_token(int argc, char * argw[],char * input){
             printf("Supported Usage- \nchmod [mode] [path]");
     }
 
-
+    //Copy function
     else if(!strcmp("cp",argw[0]))
     {
         if(argc>=3){
@@ -149,17 +160,15 @@ void check_token(int argc, char * argw[],char * input){
                 {
                     cp_(argw[i],argw[argc-1]);
                 }
-                
             }
         }
         else
         {
             printf("Enter Command Correctly");  
         }
-        
     }
 
-
+    //grep function
     else if(!strcmp("grep",argw[0]))
     {
        if(argc >= 3){
@@ -169,10 +178,10 @@ void check_token(int argc, char * argw[],char * input){
            }
        }
     }
-   
+    
+    //If no function matches excvp it
     else
     {
-        execvp(argw[0],argw);        
+        ffork_(argc,argw,input);  
     }     
- 
 }

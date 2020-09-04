@@ -1,9 +1,9 @@
 /*
- * Function:  my_cat 
+ * Function:  cat_ 
  * --------------------
  * Takes a file, and prints all the content present in on the shell
  *
- *  path: The path to the directory that needs to be set as the working directory *  
+ *  path: The path to the file that needs read  
  *
  *  Opens the file in the read only mode and then reads it line by line while printing eachline
  *  

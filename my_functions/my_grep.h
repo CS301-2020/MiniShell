@@ -1,3 +1,14 @@
+/*
+ * Function:  grep_ 
+ * --------------------
+ * This function mimcs the grep fucntion, it searches a string from the file
+ *
+ *  file: Path to the file
+ *  pat: Pattern to be found.
+ *
+ *  Reads line from the file and prints the line to standard output if the line contains the patten.
+ */
+
 #include <stdio.h>
 
 void grep_(char *file, char * pat){
