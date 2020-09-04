@@ -1,3 +1,4 @@
+#include "../token_checker.h"
 
 void fork_(int argc, char * argw[],char * input){
     //some code
@@ -5,7 +6,7 @@ void fork_(int argc, char * argw[],char * input){
     if(id==0)
     {
     //child does work here
-    execvpe(input);
+    check_token(argc,argw,input);
     }
     else
     {

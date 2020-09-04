@@ -8,7 +8,6 @@
 #include "my_functions/my_chmod.h"
 #include "my_functions/my_cp.h"
 #include "my_functions/my_grep.h"
-#include "my_functions/my_fork.h"
 
 void check_token(int argc, char * argw[],char * input){
     //Change Directory
@@ -173,8 +172,7 @@ void check_token(int argc, char * argw[],char * input){
    
     else
     {
-        fork_(argc,argw,input);
-        printf("\n");
+        execvp(argw[0],argw);        
     }     
  
 }
