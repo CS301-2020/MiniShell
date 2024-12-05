@@ -1,14 +1,7 @@
-all: build
-
-build: binaries
-  @echo "Building"
-  gcc shell.c -o shell
-
-binaries:
-  @echo "Building ls..."
-  gcc ls.c -o ls
-
-clean:
-  @echo "Cleaning"
-  rm ls
-  rm shell
+hellomake: shell.c
+	@echo "building shell..."
+	gcc -o shell shell.c -w
+	clear
+	@echo "Starting shell..."
+	./shell
+	
